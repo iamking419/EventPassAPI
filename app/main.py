@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.database import Base, engine
 from app.routers import auth, students, verify, logs,stats
@@ -8,6 +9,13 @@ from app.routers import auth, students, verify, logs,stats
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="EventPass API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow every frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # GET, POST, PUT, DELETE...
+    allow_headers=["*"],  # Authorization, Content-Type...
+)
 
 # Include routers
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Auth"])
