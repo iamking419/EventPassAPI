@@ -6,17 +6,17 @@ db = SessionLocal()
 
 # Admin
 admin = User(
-    username="Admins",
-    email="admins@school.com",
-    password_hash=hash_password("admin@questland"),
+    username="admin",
+    email="admin",
+    password_hash=hash_password("admin"),
     role="admin"
 )
 
 # Security Guard
 guard = User(
     username="security",
-    email="security@school.com",
-    password_hash=hash_password("guard@questland"),
+    email="security",
+    password_hash=hash_password("security"),
     role="security"
 )
 
